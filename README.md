@@ -36,7 +36,7 @@ For **MongoDB** as the mongo definition changes, you may have to run the script 
 ### Specific servies
 
 #### PubSub
-
+```bash
 # Install the dependency once
 pip install google-cloud-pubsub
 
@@ -48,10 +48,10 @@ python setup_pubsub.py --dry-run
 
 # Override host or project if needed
 python setup_pubsub.py --host localhost:9985 --project my-other-project
-
+```
 
 #### Bigtable
-
+```bash
 # Install dependency
 pip install google-cloud-bigtable
 
@@ -60,3 +60,4 @@ python setup_bigtable.py --instance your-instance-id
 
 # Dry-run to preview
 python setup_bigtable.py --instance your-instance-id --dry-run
+```
