@@ -1,0 +1,38 @@
+
+services:
+  mongodb:
+    image: mongo:8
+    container_name: mongodb
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    ports:
+      - "127.0.0.1:27017:27017"
+    volumes:
+      - ./mongodb/data:/opt/symphony/data
+
+  bigtable:
+    image: google/cloud-sdk:emulators
+    container_name: bigtable
+    platform: linux/amd64
+    restart: always
+    ports:
+      - "127.0.0.1:9986:8086"
+    command: [ "/bin/bash", "-c", "gcloud beta emulators bigtable start --project=sym-gke-emul-data-01 --host-port='0.0.0.0:8086'"]
+
+  pubsub:
+    image: google/cloud-sdk:emulators
+    container_name: pubsub
+    platform: linux/amd64
+    restart: always
+    ports:
+      - "127.0.0.1:9985:8085"
+    command: [ "/bin/bash", "-c", "gcloud beta emulators pubsub start --project=sym-gke-emul-data-01 --host-port='0.0.0.0:8085'"]
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    restart: always
+    ports:
+      - "127.0.0.1:6379:6379"
